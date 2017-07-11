@@ -1,0 +1,47 @@
+{{!-- Search and menu buttons --}}
+<div class="triggers">
+    <span class="search-trigger"></span>
+    <span class="nav-trigger"><i></i></span>
+</div>
+
+{{!-- This is the search container - visible after a user clicks the search button --}}
+<div class="search-container">
+    <form>
+        <div class="container">
+            <input id="search-field" placeholder="Search" autocomplete="off"/>
+            <span class="search-trigger"></span>
+        </div>
+    </form>
+    <div class="container">
+        <ul id="results"></ul>
+    </div>
+</div>
+
+{{!-- This is the menu container - visible after a user clicks the menu button --}}
+<div class="menu-container">
+    <div class="container">
+        <div class="menu-container-header">
+            <a class="blog-logo" href="{{@blog.url}}" title="{{@blog.title}}">
+                {{#if @blog.logo}} <img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a> {{else}} {{@blog.title}} {{/if}} 
+            </a>
+            <span class="nav-trigger"><i></i></span>
+        </div>
+    </div>
+    <nav class="nav container">
+        <ul>
+            {{#foreach navigation}}
+                <li class="nav-{{slug}}{{#if current}} nav-current{{/if}}"><a href="{{url absolute="true"}}" title="{{label}}">{{label}}</a></li>
+            {{/foreach}}
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="social">
+            {{#if @blog.facebook}}
+                <a href="{{facebook_url}}" class="facebook" title="{{@blog.facebook}}"></a>
+            {{/if}}
+            {{#if @blog.twitter}}
+                <a href="{{twitter_url}}" class="twitter" title="{{@blog.twitter}}"></a>
+            {{/if}}
+        </div>
+    </div>
+</div>  

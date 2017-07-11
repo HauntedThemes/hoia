@@ -1,1 +1,1 @@
-# lizun-beta
+# Lizun

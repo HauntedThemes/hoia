@@ -1,0 +1,32 @@
+{
+    "name": "lizun",
+    "description": "Lizun theme",
+    "demo": "https://hauntedthemes.com/lizun",
+    "version": "1.0.0",
+    "engines": {
+        "ghost": ">=1.0.0"
+    },
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg",
+        "mobile": "assets/screenshot-mobile.jpg"
+    },
+    "author": {
+        "name": "HauntedThemes",
+        "email": "contact@hauntedthemes.com",
+        "url": "https://hauntedthemes.com"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Minimal",
+            "Personal Blogs"
+        ]
+    },
+    "keywords": [
+        "ghost",
+        "theme"
+    ],
+    "config": {
+        "posts_per_page": 3
+    }
+}
