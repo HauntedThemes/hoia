@@ -1,5 +1,5 @@
 /**
- * Main JS file for Lizun
+ * Main JS file for Hoia
  */
 
 jQuery(document).ready(function($) {
@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
         'share-selected-text': true,
         'load-more': true,
         'infinite-scroll': false,
-        'disqus-shortname': 'lizun-1'
+        'disqus-shortname': 'hoia-1'
     };
 
     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -276,7 +276,7 @@ jQuery(document).ready(function($) {
         }, 400);
     });
 
-    // Lizun's functions
+    // Hoia's functions
 
     // Check if element is into view when scrolling
     function isScrolledIntoView(elem){
