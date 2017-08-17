@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
         'share-selected-text': true,
         'load-more': true,
         'infinite-scroll': false,
-        'disqus-shortname': 'hoia-1'
+        'disqus-shortname': 'hauntedthemes-demo'
     };
 
     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);

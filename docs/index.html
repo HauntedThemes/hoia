@@ -33,7 +33,7 @@
         <div class="ui divider full-divider sidebar-divider"></div>
         <div class="ui  item">
             <p>v1.0.0 <br>
-            Last update: 26.07.2017</p>
+            Last update: 17.08.2017</p>
         </div>
         <a href="https://twitter.com/HauntedThemes" class="item" target="_blank"><b><i class="twitter icon"></i> @HauntedThemes</b></a>
         <a href="https://www.facebook.com/HauntedThemes/" class="item" target="_blank"><b><i class="facebook icon"></i> HauntedThemes</b></a>
@@ -52,23 +52,20 @@
                             <p><code><b>hoia-master/hoia</b></code>.</p>
                         </li>
                         <li>Login to FTP/SFTP of your blog of your provided hosting service.</li>
-                        <li>Navigate to the <code><b>/content/themes/</b></code> directory within your ghost installation.</li>
+                        <li>Navigate to the <code><b>/content/themes/</b></code> directory within your Ghost installation.</li>
                         <li>Upload the <code><b>hoia</b></code></code> directory found in step one into the remote <code><b>/content/themes/</b></code> directory.</li>
                         <li>
-                            Restart your Ghost.
-                            <ol>
-                                <li>To stop Ghost, press <code><b>Ctrl+C</b></code> in the terminal window. To start Ghost, type <code><b>npm start</b></code>.</li>
-                            </ol>
+                            <a href="https://docs.ghost.org/docs/cli-restart" target="_blank">Restart Ghost</a>.
                         </li>
                         <li>Login into your Ghost admin panel. This can be found at <code><b>yourdomain.com/ghost</b></code>.</li>
-                        <li>Navigate to the <code><b>Settings > General tab</b></code>.</li>
+                        <li>Navigate to the <code><b>Settings > Design</b></code>.</li>
                         <li>In <code><b>Themes</b></code> section, click <code><b>Activate</b></code> where is says <code><b>hoia</b></code>.</li>
                     </ol>
                     <div class="ui horizontal divider or"> Or </div>
                     <h3 class="ui header">Upload theme archive from Ghost Dashboard</h3>
                     <ol class="ui list">
                         <li>Login into your Ghost admin panel. This can be found at <code><b>yourdomain.com/ghost</b></code>.</li>
-                        <li>Navigate to the <code><b>Settings > General tab</b></code>.</li>
+                        <li>Navigate to the <code><b>Settings > Design</b></code>.</li>
                         <li>In <code><b>Themes</b></code> section, click <code><b>Upload</b></code> and select within the download files:
                             <p><code><b>hoia.zip</b></code>.</p>
                         </li>
@@ -77,10 +74,10 @@
                     <h2>After activation</h2>
                     <ol class="ui list">
                         <li>Navigate to the <code><b>Settings > Labs</b></code>.</li>
-                        <li>In <code><b>Enable Beta Features</b></code> section, mark all checkboxes as checked.</li>
+                        <li>In <code><b>Enable Beta Features</b></code> section, make sure that Public API and Subscribers are checked.</li>
                     </ol>
                     <div class="ui ignored negative message message-inline">
-                        <p><code><b>Enabling Beta Features</b></code> is mandatory in order to use the theme properly!</p>
+                        <p><code><b>Public API</b></code> is mandatory in order to use the theme properly!</p>
                     </div>
                 </div>
                 <div class="ui divider full-divider"></div>
@@ -95,11 +92,8 @@
     'share-selected-text': <b>true</b>,
     'load-more': <b>false</b>,
     'infinite-scroll': <b>false</b>,
-    'disqus-shortname': <b>'hoia-1'</b>
+    'disqus-shortname': <b>'hauntedthemes-demo'</b>
 };</pre>
-                    </div>
-                    <div class="ui ignored negative message message-inline">
-                        <p><code><b>posts-each-load</b></code> is removed in <code><b>hoia-beta</b></code>. <br> You will have to change the <code><b>posts_per_page</b></code> value from <code><b>package.json</b></code> </p>
                     </div>
                     <h3>'share-selected-text'</h3>
                     <p>Has 2 posible options: <code><b>true</b></code> or <code><b>false</b></code>. <br>
@@ -110,27 +104,13 @@
                     <h3>'load-more'</h3>
                     <p>Has 2 posible options: <code><b>true</b></code> or <code><b>false</b></code>. <br>
                     When is set to <code><b>true</b></code> the pagination will be replaced with a <code><b>load more</b></code> button.</p>
-                    <div class="ui ignored negative message message-inline">
-                        <p><code><b>'posts-each-load'</b></code> is mandatory and needs to be set correctly if you want to use <code><b>'load-more'</b></code></p>
-                    </div>
-                    <h3>'posts-each-load'</h3>
-                    <p>This variable is used to set the number of posts you want to be loaded each time a request is made.</p>
-                    <div class="ui ignored negative message message-inline">
-                        <p><code><b>'posts-each-load'</b></code> value needs to be the same as the value of <code><b>Posts per page</b></code> inside Ghost settings. </p>
-                        <ol class="ui list">
-                            <li>To set <code><b>Posts per page</b></code> you have to login into your Ghost admin panel.</li>
-                            <li>Navigate to the <code><b>Settings > General tab</b></code>.</li>
-                            <li>In <code><b>Posts per page</b></code> section write the number of posts you want to load.</li>
-                        </ol>  
-                    </div>
                     <h3>'infinite-scroll'</h3>
                     <p>Has 2 posible options: <code><b>true</b></code> or <code><b>false</b></code>. <br>
                     When is set to <code><b>true</b></code> the posts will be automatically loaded when the user scrolls.</p>
-                    <div class="ui ignored negative message message-inline">
-                        <p><code><b>'load-more'</b></code> and <code><b>'posts-each-load'</b></code> are mandatory and need to be set correctly if you want to use <code><b>'infinite-scroll'</b></code></p>
-                    </div>
                     <h3>'disqus-shortname'</h3>
                     <p>Enter your Disqus account shortname here to enable comments for blog posts.</p>
+                    <h3>Posts per page</h3>
+                    <p>You can define <code><b><a href="https://themes.ghost.org/docs/packagejson#section--config-posts_per_page-" target="_blank">posts_per_page</a></b></code> inside <code><b>package.json</b></code>. This will set the number of posts that will load each iteration.</p>
                 </div>
                 <div class="ui divider full-divider"></div>
                 <div id="third-pary-scripts">
@@ -176,6 +156,7 @@
                         <li>Navigate to the <code><b>Settings > Code injection</b></code>.</li>
                         <li>Paste your embed code inside <code><b>Blog Header</b></code> textarea and click <code><b>Save</b></code>.</li>
                     </ol>
+                    <p>If everything is ok with Typekit fonts you should remove the <code><b>Open Sans</b></code> and <code><b>Roboto</b></code> fonts from <code><b>partials/theme_head.hbs</b></code>. Simply comment or remove the line.</p>
                     <div class="ui ignored negative message message-inline">
                         <p>Typekit is a subscription service for fonts. In order to use Typekit fonts you must have a paid account.</p>
                     </div>
