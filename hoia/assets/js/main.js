@@ -337,7 +337,12 @@ jQuery(document).ready(function($) {
 
         var datetime = d[0] +'-'+ d[1] +'-'+ d[2];
         var date = d[2] +' '+ monthNames[monthNumber] +' '+ d[0];
-        var excerpt = getWords($(postData.html).text());
+        var excerpt;
+        if (postData.custom_excerpt != null) {
+            excerpt = postData.custom_excerpt;
+        }else{
+            excerpt = getWords($(postData.html).text());
+        };
 
         var data = {
             title: postData.title,
