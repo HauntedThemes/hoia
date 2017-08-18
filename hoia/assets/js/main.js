@@ -11,10 +11,10 @@ jQuery(document).ready(function($) {
         'disqus-shortname': 'hauntedthemes-demo'
     };
 
-    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    var rellax;
-    var msnry;
+    var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+        h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+        rellax,
+        msnry;
 
     // Add classes and attributes for Rellax library
     $('.content-inner .post-content a img:only-child').each(function(index, el) {
@@ -128,6 +128,7 @@ jQuery(document).ready(function($) {
 
     // Menu trigger
     var disabled = false;
+    $('header .menu-container').css('overflow', 'hidden');
     $('.nav-trigger').on('click', function(event) {
         event.preventDefault();
         if (disabled == false) {
@@ -178,6 +179,7 @@ jQuery(document).ready(function($) {
                     disabled = false;
                 }, 300);
             }else{
+                $('#search-field').blur();
                 $('header .search-container').css({
                     opacity: '0'
                 });
@@ -198,7 +200,14 @@ jQuery(document).ready(function($) {
         results             : "#results",
         onKeyUp             : true,
         displaySearchInfo   : false,
-        result_template     : "<li><a href='{{link}}' title='{{title}}'>{{title}}</a></li>"
+        result_template     : "<li><a href='{{link}}' title='{{title}}'>{{title}}</a></li>",
+        onComplete      : function( results ){
+            $('#results li').each(function(index, el) {
+                if (index > 9) {
+                    $(this).hide();
+                };
+            });
+        }
     });
 
     // Validate Subscribe input
@@ -225,12 +234,16 @@ jQuery(document).ready(function($) {
     };
 
     // Position social share buttons inside a single post
-    if ($('.social-share').length) {
-        $(window).scroll(function() {
-            shareButtons();
-        });
-        shareButtons();
+    var checkIfSticky = 0;
+    if (w >= 992) {
+        stickIt();
+        checkIfSticky = 1;
     };
+    function stickIt(){
+        $('.content-inner .post-content .social-share').stick_in_parent({
+            offset_top: 50
+        });
+    }
 
     // Initialize Disqus comments
     if ($('#content').attr('data-id') && config['disqus-shortname'] != '') {
@@ -262,6 +275,16 @@ jQuery(document).ready(function($) {
         }else{
             $('.rellax').attr('data-rellax-speed', 2);
             $('.rellax').attr('data-rellax-percentage', 0.5);
+        };
+
+        if (w < 960) {
+            $('.content-inner .post-content .social-share').trigger("sticky_kit:detach");
+            checkIfSticky = 0;
+        }else{
+            if (checkIfSticky == 0) {
+                stickIt();
+                checkIfSticky++;
+            }
         };
 
         setTimeout(function() {
@@ -357,9 +380,10 @@ jQuery(document).ready(function($) {
                     '{{/feature_image}}',
                     '<p>',
                         '{{excerpt}}',
+                        '<br>',
+                        '<a class="read-more btn" href="{{url}}" title="{{title}}">Read more</a>',
                     '</p>',
                 '</div>',
-                '<a class="read-more btn" href="{{url}}" title="{{title}}">Read more</a>',
             '</article>'
         ].join("\n");
 
@@ -400,18 +424,6 @@ jQuery(document).ready(function($) {
     function validateEmail(email) {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
-    }
-
-    // Position share buttons
-    function shareButtons(){
-        var distance = $('.content-inner .post-content').offset().top - 100;
-        var distanceFooter = $('.content-inner .post-content').height() + $('.content-inner .post-content').offset().top - 260;
-
-        if ($(window).scrollTop() > distance && $(window).scrollTop() < distanceFooter) {
-            $('.social-share').addClass('active');
-        }else {
-            $('.social-share').removeClass('active');
-        }
     }
 
 });

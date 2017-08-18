@@ -18,7 +18,7 @@
     "gpm": {
         "type": "theme",
         "categories": [
-            "Travel",
+            "Travel"
         ]
     },
     "keywords": [
@@ -26,6 +26,6 @@
         "theme"
     ],
     "config": {
-        "posts_per_page": 3
+        "posts_per_page": 3,
     }
 }

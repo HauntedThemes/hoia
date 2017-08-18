@@ -12,37 +12,37 @@
 
     <div class="main-container">
         <header>
-            <a href="{{@blog.url}}" class="back">Back</a>
+            <a href="{{@blog.url}}" class="back"></a>
         </header>
-    </div>
 
-    <main id="content" class="content content-inner" role="main">
-        <article class="{{post_class}}">
-            <h1 class="post-title">
-                {{^if success}}
-                    Subscribe to {{@blog.title}}
-                {{else}}
-                    Subscribed!
-                {{/if}}
-            </h1>
-            <section class="post-content">
-                {{^if success}}
-                    {{subscribe_form
-                        form_class="gh-signin"
-                        input_class="gh-input"
-                        button_class="btn btn-blue btn-block"
-                        placeholder="Your email address"
-                        autofocus="true"
-                    }}
-                {{else}}
-                    <p>
-                        You've successfully subscribed to <em>{{@blog.title}}</em>
-                        with the email address <em>{{email}}</em>.
-                    </p>
-                {{/if}}
-            </section>
-        </article>
-    </main>
+        <main id="content" class="container content-inner" role="main">
+            <article class="{{post_class}}">
+                <h1 class="post-title">
+                    {{^if success}}
+                        Subscribe to {{@blog.title}}
+                    {{else}}
+                        Subscribed!
+                    {{/if}}
+                </h1>
+                <section class="post-content">
+                    {{^if success}}
+                        {{subscribe_form
+                            form_class="gh-signin"
+                            input_class="gh-input"
+                            button_class="btn btn-blue btn-block"
+                            placeholder="Your email address"
+                            autofocus="true"
+                        }}
+                    {{else}}
+                        <p>
+                            You've successfully subscribed to <em>{{@blog.title}}</em>
+                            with the email address <em>{{email}}</em>.
+                        </p>
+                    {{/if}}
+                </section>
+            </article>
+        </main>
+    </div>
 
 
     {{!-- jQuery needs to come before `{{ghost_foot}}` so that jQuery can be used in code injection --}}
@@ -56,6 +56,7 @@
     <script type="text/javascript" src="{{asset "js/imagesloaded.pkgd.min.js"}}"></script>
     <script type="text/javascript" src="{{asset "js/jquery.ghostHunter.min.js"}}"></script>
     <script type="text/javascript" src="{{asset "js/mustache.min.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/sticky-kit.min.js"}}"></script>
 
     {{!-- Ghost outputs important scripts and data with this tag --}}
     {{ghost_foot}}

@@ -17,7 +17,7 @@
     {{amp_ghost_head}}
 
     {{!-- Styles'n'Scripts --}}
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,600,400" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700%7CRoboto:300,400,900%7CFira+Mono" rel="stylesheet">
     <style amp-custom>
         /* ==========================================================================
            Table of Contents
@@ -237,7 +237,7 @@
             color: #646464;
             background: #fff;
             letter-spacing: 0.01rem;
-            font-family: "Merriweather", serif;
+            font-family: "Open Sans", serif;
             font-size: 16px;
             line-height: 24px;
             text-rendering: geometricPrecision;
@@ -264,7 +264,7 @@
         h6 {
             margin: 0 0 30px 0;
             color: #333333;
-            font-family: "Open Sans", sans-serif;
+            font-family: "Roboto", sans-serif;
             line-height: 1.15em;
             text-rendering: geometricPrecision;
 
@@ -427,7 +427,7 @@
             margin: 0 0 1.75em 0;
             width: 100%;
             border-radius: 3px;
-            font-family: Inconsolata, monospace, sans-serif;
+            font-family: 'Fira Mono', monospace;
 
             background-color: #FFFDF8;
             display: block;
@@ -676,7 +676,7 @@
             line-height: 2.2rem;
             color: #0044FF;
             font-weight: bold;
-            text-align: right;
+            text-align: left;
         }
 
         .post-meta a {
@@ -705,15 +705,14 @@
 
         .post-image {
             margin: 2.5rem 0 0 0;
-            padding-top: 3rem;
             padding-bottom: 30px;
-            border-top: 1px #E8E8E8 solid;
         }
 
         /* Keep images centered, and allow images wider than the main
            text column to break out. */
         .post-content amp-img,
-        .post-content amp-anim {
+        .post-content amp-anim,
+        .post-image amp-img {
             /* Centers an image by (1) pushing its left edge to the
                center of its container and (2) shifting the entire image
                in the opposite direction by half its own width.

@@ -15,12 +15,14 @@
                 </div>
                 <div class="newsletter-col">
                     <h3>Newsletter</h3>
-                    {{subscribe_form
-                        form_class="gh-signin"
-                        input_class="gh-input"
-                        button_class="btn"
-                        placeholder="Your email address"
-                    }}
+                    {{#if @labs.subscribers}}
+                        {{subscribe_form
+                            form_class="gh-signin"
+                            input_class="gh-input"
+                            button_class="btn"
+                            placeholder="Your email address"
+                        }}
+                    {{/if}}
                 </div>
             </div>
             <div class="social">
@@ -31,6 +33,6 @@
                     <a href="{{twitter_url}}" class="twitter" title="{{@blog.twitter}}"></a>
                 {{/if}}
             </div>
-            <section class="copyright">Copyright &copy; {{date format="YYYY"}}, <a href="{{@blog.url}}">{{@blog.title}}</a>. All Right Reserved.</section>
+            <div class="copyright">Copyright &copy; {{date format="YYYY"}}, <a href="{{@blog.url}}">{{@blog.title}}</a>. All Right Reserved.</div>
         </div>
     </footer>

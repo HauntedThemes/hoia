@@ -237,16 +237,17 @@ pre code{
 
 p{
     color: #646464;
-    font-size: 20px;
+    font-size: 18px;
     margin: 20px 0;
-    line-height: 30px;
+    line-height: 26px;
 }
 
 ol, ul, dl{
     color: #646464;
-    font-size: 20px;
+    font-size: 18px;
     margin: 20px 0;
-    line-height: 35px;
+    line-height: 30px;
+    padding-left: 20px;
 }
 
 p + h1,
@@ -320,6 +321,10 @@ textarea{
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #0037CD inset;
+}
+
+input::-ms-clear {
+    display: none;
 }
 
 input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]):not([type=reset]):not([type=button]):focus,
@@ -404,14 +409,10 @@ button[type=submit]:hover{
     padding: 0 150px;
 }
 
-#content{
-    margin: 0 auto;
-    max-width: 1140px;
-}
-
 .container{
-    max-width: 1440px;
+    max-width: 1140px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .hidden{
@@ -441,6 +442,10 @@ header{
     align-items: center;
     max-width: 1140px;
     margin: 0 auto;
+}
+
+header .container{
+    max-width: 1440px;
 }
 
 header .blog-logo{
@@ -677,16 +682,12 @@ header nav ul{
     opacity: 0.4;
     margin: 0;
     font-size: 0;
-    -webkit-transform: translateY(-25%) rotateX(35deg);
-    transform: translateY(-25%) rotateX(35deg);
-    -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
-    transition: transform 0.5s, opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
 }
 
 header.active nav ul{
     opacity: 1;
-    -webkit-transform: rotateX(0deg);
-    transform: rotateX(0deg);
 }
 
 header nav ul li{
@@ -728,20 +729,22 @@ header .social a:hover:before{
     color: #0044FF;
 }
 
+header .social a:first-child{
+    margin-left: 0;
+}
+
 #results{
     padding: 50px 150px;
     list-style-type: none;
     opacity: 1;
     -webkit-transform: rotateX(0deg);
     transform: rotateX(0deg);
-    -webkit-transition: -webkit-transform 0.5s, opacity 0.5s;
-    transition: transform 0.5s, opacity 0.5s;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
 }
 
 #results:empty{
     opacity: 0;
-    -webkit-transform: translateY(-25%) rotateX(35deg);
-    transform: translateY(-25%) rotateX(35deg);
 }
 
 #results li{
@@ -781,8 +784,9 @@ header .social a:hover:before{
    ========================================================================== */
 
 .content-inner .post-content{
-    margin: 0 200px 75px 200px;
+    margin: 0 auto 75px auto;
     position: relative;
+    width: 740px;
 }
 
 .grid{
@@ -792,7 +796,7 @@ header .social a:hover:before{
 .grid article{
     width: calc(50% - 60px);
     display: inline-block;
-    margin-bottom: 150px;
+    margin-bottom: 100px;
     padding: 0 30px 0;
     vertical-align: top;
 }
@@ -865,12 +869,12 @@ header .social a:hover:before{
 }
 
 .grid.first article:first-child p{
-    font-size: 26px;
-    line-height: 36px;
+    font-size: 24px;
+    line-height: 34px;
     display: inline-block;
     vertical-align: top;
-    margin: 40px 0 0 auto;
-    width: calc(100% - 95px);
+    margin: 40px auto 0 auto;
+    width: calc(100% - 190px);
 }
 
 .grid.first article:first-child .img-holder + p{
@@ -967,25 +971,18 @@ header .social a:hover:before{
 }
 
 .content-inner .post-content .social-share{
-    position: fixed;
-    top: 150px;
+    position: absolute;
+    top: 0;
     font-size: 13px;
     font-weight: 500;
     line-height: 15px;
     color: #C1C1C1;
     margin-left: -200px;
     text-transform: uppercase;
-    z-index: -1;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s linear .3s,opacity .3s 0s;
 }
 
 .content-inner .post-content .social-share.active{
     visibility: visible;
-    opacity: 1;
-    transition: visibility 0s linear 0s,opacity .3s 0s;
-    z-index: 999;
 }
 
 .content-inner .post-content .social-share a:not(.img-holder){
@@ -1098,7 +1095,7 @@ header .social a:hover:before{
 
 .pagination .older-posts{
     position: absolute;
-    right: 45px;
+    right: 15px;
     top: 0;
 }
 
@@ -1113,7 +1110,7 @@ header .social a:hover:before{
 
 .pagination .newer-posts{
     position: absolute;
-    left: 45px;
+    left: 15px;
     top: 0;
 }
 
@@ -1139,6 +1136,10 @@ header .social a:hover:before{
 
 #load-posts.visible{
     display: block;
+}
+
+#load-posts.visible.hidden{
+    display: none;
 }
 
 #load-posts.visible + .pagination{
@@ -1275,7 +1276,8 @@ header .social a:hover:before{
    ========================================================================== */
 
 .tags{
-    margin: 0 200px 65px 200px;
+    margin: 0 auto 65px auto;
+    width: 740px;
     list-style-type: none;
     padding: 0;
 }
@@ -1447,6 +1449,22 @@ header .social a:hover:before{
     border-bottom: 1px solid white;
 }
 
+.subscribe header a{
+    width: 80px;
+    height: 80px;
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.subscribe header a:before{
+    font-family: "icons";
+    content: "\e907";
+    font-size: 24px;
+    color: #ffffff;
+}
+
 .gh-input.error{
     animation: shake .5s linear;
     -webkit-animation: shake .5s linear;
@@ -1559,13 +1577,17 @@ footer input[type="submit"]{
 footer .copyright{
     text-align: center;
     font-size: 15px;
-    line-height: 18px;
+    line-height: 24px;
     padding: 40px 0 85px;
 }
 
 footer label{
     margin-bottom: 10px;
     margin-top: 30px;
+}
+
+.gh-signin input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
 }
 
 .social{
@@ -1603,9 +1625,6 @@ footer label{
    ========================================================================== */
 
 @media (max-width: 1440px) {
-    .content-inner .post-content{
-        margin: 0 150px 75px 150px;
-    }
     .grid.first article:first-child h2, .content-inner article h1.post-title,
     .tag-title h1, .error-title h1{
         font-size: 72px;
@@ -1616,14 +1635,21 @@ footer label{
         line-height: 30px;
     }
     .grid.first article:first-child p{
-        font-size: 22px;
-        line-height: 34px;
+        font-size: 20px;
+        line-height: 30px;
     }
-    .tags {
-        margin: 0 150px 75px 150px;
+    .content-inner .post-content .social-share{
+        margin-left: -150px;
+    }
+    .pagination .newer-posts{
+        left: 0;
+    }
+    .pagination .older-posts{
+        right: 0;
     }
     #disqus_thread {
-        margin: 80px 150px;
+        margin: 80px auto;
+        width: 740px;    
     }
 }
 
@@ -1664,40 +1690,47 @@ footer label{
         max-width: 100%;
         width: calc(100% - 20px);
     }
+    .content-inner .content-holder img{
+        margin-left: -50px;
+    }
+    .content-inner .post-content{
+        width: 620px;
+    }
+    .content-inner .post-content .social-share{
+        margin-left: -140px;
+    }
     .grid.first article:first-child h2, .content-inner article h1.post-title,
     .tag-title h1, .error-title h1{
         font-size: 56px;
         line-height: 72px;
     }
-    .grid.first article:first-child .content-holder{
-        flex-direction: column;
+    .main-container{
+        padding: 0 100px;
     }
     .grid.first article:first-child .img-holder{
-        width: 100%;
+        margin-left: -50px;
     }
-    .grid.first article:first-child .img-holder + p{
-        width: 100%;
+    header .menu-container .menu-container-header,
+    header .search-container #search-field,
+    header.active nav ul,
+    header .social,
+    #results,
+    footer .container-footer{
+        padding-left: 100px;
+        padding-right: 100px;
     }
-    .grid article{
-        width: calc(100% - 160px);
-        margin-bottom: 100px;
-        padding: 0 80px 0;
+    header .search-container form .container .search-trigger{
+        right: 100px;
     }
-    .content-inner .post-content{
-        margin: 0 100px 75px 100px;
-    }
-    .content-inner .post-content .social-share{
-        margin-left: -165px;
-    }
-    .tags {
-        margin: 0 100px 75px 100px;
+    .tags{
+        width: 620px;
     }
     #disqus_thread {
-        margin: 80px 100px;
+        width: 620px;
     }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 959px) {
     .main-container {
         padding: 0 100px;
     }
@@ -1718,6 +1751,11 @@ footer label{
     header .search-container form .container .search-trigger{
         right: 100px;
     }
+    input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]):not([type=reset]):not([type=button]){
+        padding: 13px 25px;
+        font-size: 16px;
+        line-height: 20px;
+    }
     #results{
         padding: 50px 100px;
     }
@@ -1725,27 +1763,51 @@ footer label{
         font-size: 48px;
         line-height: 60px;
     }
-    .grid.first article:first-child .img-holder + p{
+    .grid.first article:first-child{
+        padding: 0;
+        width: 100%;
+    }
+    .grid.first article:first-child .post-meta, .content-inner article .post-meta{
+        width: auto;
+        margin-left: 65px;
+    }
+    .grid.first article:first-child p{
         font-size: 18px;
         line-height: 26px;
     }
+    .grid.first article:first-child .img-holder + p{
+        font-size: 18px;
+        line-height: 26px;
+        margin-left: 65px;
+        width: calc(100% - 130px);
+    }
     .grid article {
-        width: calc(100% - 60px);
+        width: 100%;
         margin-bottom: 100px;
-        padding: 0 30px 0;
+        padding: 0;
     }
-    .gh-signin{
-        max-width: 60%;
-        margin: 0 auto;
+    .grid .img-holder, .content-inner .post-content .img-holder{
+        margin-bottom: 50px;
     }
-    .content-inner .post-content{
-        margin: 0 50px 75px 50px;
+    .grid.first article:first-child .content-holder{
+        display: block;
     }
-    #disqus_thread {
-        margin: 80px 50px;
+    .grid.first article:first-child .img-holder{
+        margin-right: auto;
+        width: 100%;
+        margin-left: auto;
     }
-    .tags{
-        margin: 0 50px 75px 50px;
+    .grid p{
+        width: calc(100% - 130px);
+    }
+    .grid h2{
+        margin-top: 10px;
+    }
+    .author-template .author{
+        margin-bottom: 50px;
+    }
+    .content-inner .post-content img{
+        margin-bottom: 50px;
     }
     .content-inner .post-content .social-share,
     .content-inner .post-content .social-share.active{
@@ -1764,12 +1826,46 @@ footer label{
     .content-inner .post-content .social-share span{
         display: block;
     }
-    footer .container-footer{
-        padding: 85px 100px;
+    .content-inner .content-holder img{
+        margin-left: -50px;
+        width: calc(100% + 100px);
+        max-width: calc(100% + 90px);
+    }
+    .content-inner .post-content{
+        width: 580px;
+    }
+    .tags{
+        width: 580px;
+    }
+    #disqus_thread{
+        width: 580px;
+    }
+    footer .copyright{
+        padding: 20px 0 20px;
+    }
+    footer .btn{
+        margin-top: 0;
+    }
+    footer h3{
+        display: none;
+    }
+    footer .tags-col{
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+    footer .tags-col ul{
+        font-size: 16px;
+        line-height: 20px;
+    }
+    footer .social{
+        margin-bottom: 25px;
     }
     footer .container-footer{
-        flex-direction: column;
+        padding: 20px 0 50px;
+    }
+    footer .container-footer{
         text-align: center;
+        display: block;
     }
     footer .tags-col ul{
         text-align: center;
@@ -1780,8 +1876,13 @@ footer label{
     footer h3{
         margin-left: 10px;
     }
-    footer .tags-col{
-        margin-bottom: 50px;
+    .gh-signin{
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+    .social{
+        font-size: 20px;
     }
 }
 
@@ -1809,26 +1910,18 @@ footer label{
         font-size: 10px;
     }
     p + h1, p + h2, p + h3, p + h4, p + h5, p + h6 {
-        margin-top: 60px;
+        margin-top: 50px;
     }
     ol, ul, dl{
         font-size: 16px;
         line-height: 24px;
     }
     blockquote:before{
-        left: -25px;
-    }
-    input:not([type=submit]):not([type=file]):not([type=radio]):not([type=checkbox]):not([type=reset]):not([type=button]){
-        padding: 13px 25px;
-        font-size: 16px;
-        line-height: 20px;
-    }
-    .main-container{
-        overflow: visible;
+        left: -20px;
     }
     .main-container {
-        padding: 0;
-        max-width: 80%;
+        padding: 0 30px;
+        max-width: 100%;
         margin: 0 auto;
     }
     header .blog-logo img{
@@ -1841,12 +1934,12 @@ footer label{
     header .search-container #search-field{
         height: 50px;
         font-size: 18px;
-        width: 80%;
+        width: calc(100% - 60px);
         margin: 0 auto;   
         padding: 0;     
     }
     header .search-container form .container .search-trigger{
-        right: 10%;
+        right: 30px;
     }
     header .search-container form .container .search-trigger:before, header .search-container form .container .search-trigger:after{
         height: 3px;
@@ -1855,7 +1948,7 @@ footer label{
     }
     header .menu-container .menu-container-header{
         padding: 30px 0 0 0;
-        width: 80%;
+        width: calc(100% - 60px);
         margin: 10px auto 0 auto;
     }
     header nav{
@@ -1866,7 +1959,7 @@ footer label{
         padding-bottom: 50px;
     }
     header nav ul{
-        width: 80%;
+        width: calc(100% - 60px);
         margin: 0 auto;
         padding: 0;
     }
@@ -1881,14 +1974,14 @@ footer label{
     }
     header .social{
         padding: 0 0 50px;
-        width: 80%;
+        width: calc(100% - 60px);
         margin: 0 auto;
     }
-     header .blog-logo{
+    header .blog-logo{
         font-size: 18px;
     }
     header{
-        padding: 30px 0 90px;
+        padding: 30px 0 60px;
     }
     header .search-trigger{
         font-size: 16px;
@@ -1907,10 +2000,14 @@ footer label{
     header .triggers{
         width: 80px;
     }
+    header .menu-container .menu-container-header, header .search-container #search-field, header.active nav ul, header .social, #results, footer .container-footer{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
     #results{
         padding: 25px 0;
         margin: 0 auto;
-        width: 80%;
+        width: calc(100% - 60px);
     }
     #results li a{
         line-height: 26px;
@@ -1925,27 +2022,33 @@ footer label{
     }
     .content-inner .post-content img{
         margin-bottom: 50px;
-        max-width: 110%;
+        max-width: 100%;
     }
     .content-inner .content-holder img{
         margin-bottom: 25px;
         margin-left: -15px;
+        max-width: calc(100% + 20px);
+        width: calc(100% + 20px);
     }
     .content-inner .post-content{
-        margin: 0 0 75px 0;
+        margin: 0 auto 50px auto;
+        width: 100%;
     }
     .grid article{
         width: 100%;
         padding: 0;
+        margin-bottom: 75px;
     }
     .grid.first article:first-child .img-holder{
         margin-left: -15px;
+        width: calc(100% + 30px);
+        margin-bottom: 25px;
     }
     .grid.first article:first-child h2, .content-inner article h1.post-title, .tag-title h1, .error-title h1,
     .grid h2{
         font-size: 32px;
         line-height: 40px;
-        margin: 0 0 40px;
+        margin: 0 0 25px;
     }
     .grid img, .content-inner img{
         padding: 5px;
@@ -1953,6 +2056,8 @@ footer label{
     .grid.first article:first-child .img-holder + p {
         font-size: 16px;
         line-height: 24px;
+        margin-left: 0;
+        width: 100%;
     }
     .grid .img-holder, .content-inner .post-content .img-holder{
         margin-bottom: 40px;
@@ -1970,7 +2075,7 @@ footer label{
     }
     .grid.first article:first-child .post-meta, .content-inner article .post-meta{
         width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         margin-left: 0;
     }
     .author{
@@ -1979,6 +2084,45 @@ footer label{
     }
     .grid article.featured .post-title:before{
         left: -24px;
+    }
+    .grid.first article:first-child p{
+        margin-top: 0;
+        margin-left: 0;
+        font-size: 16px;
+        line-height: 24px;
+        width: 100%;
+    }
+    .grid p br{
+        display: none;
+    }
+    .grid .post-meta{
+        margin-bottom: 10px;
+    }
+    .grid .img-holder, .content-inner .post-content .img-holder{
+        width: calc(100% + 30px);
+        margin-bottom: 25px;
+    }
+    .grid p{
+        width: 100%;
+    }
+    .read-more{
+        display: inline;
+        background: transparent;
+        color: #0044FF;
+        margin: 0;
+        padding: 0;
+        text-transform: lowercase;
+    }
+    .read-more:hover{
+        background: transparent;
+        color: #FF4400;
+    }
+    .read-more:after{
+        content: '...';
+        font-size: 15px;
+        font-weight: bold;
+        line-height: 28px;
+        margin-left: 3px;
     }
     .pagination .older-posts{
         right: 0;
@@ -1989,39 +2133,39 @@ footer label{
     .pagination b span{
         display: none;
     }
+    .tag-title, .error-title{
+        margin-top: 0;
+        margin-bottom: 50px;
+    }
+    .author-template .author{
+        margin-bottom: 50px;
+        padding-bottom: 25px;
+    }
     .tags{
         margin: 0 0 50px 0;
     }
     #disqus_thread {
-        margin: 80px 0;
+        margin: 80px auto;
+        width: 100%;
+    }
+    .post-meta a{
+        font-size: 13px;
+        line-height: 15px;
+    }
+    .post-meta{
+        font-size: 13px;
+        line-height: 15px;
+    }
+    .post-meta:before{
+        margin-right: 10px;
+    }
+    .post-meta a{
+        margin-right: 7px;
     }
     footer .container-footer{
         padding: 20px 0 50px;
     }
     footer .container{
         max-width: 80%;
-    }
-    footer .copyright{
-        padding: 20px 0 20px;
-    }
-    footer .btn{
-        margin-top: 0;
-    }
-    footer h3{
-        display: none;
-    }
-    footer .tags-col{
-        margin-top: 50px;
-    }
-    footer .tags-col ul{
-        font-size: 16px;
-        line-height: 20px;
-    }
-    .gh-signin{
-        width: 100%;
-        max-width: 320px;
-    }
-    .social{
-        font-size: 20px;
     }
 }
