@@ -1417,7 +1417,7 @@ header .social a:first-child{
     background: #646464;
 }
 
-.share-selected-text-main-container .share-selected-text-btn .fa-twitter:before{
+.share-selected-text-main-container .share-selected-text-btn .icon-sst-twitter:before{
     font-family: 'icons';
     content: '\e902';
     font-size: 10px;
