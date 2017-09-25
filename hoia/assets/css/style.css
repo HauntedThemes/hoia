@@ -2020,6 +2020,9 @@ footer label{
         margin-bottom: 15px;
         margin-right: 0;
     }
+    .content-inner article h1.post-title + .post-content{
+        margin-top: 0;
+    }
     .content-inner .post-content img{
         margin-bottom: 50px;
         max-width: 100%;
