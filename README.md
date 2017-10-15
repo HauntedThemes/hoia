@@ -1,4 +1,4 @@
-Hoia by HauntedThemes
+Hoia by Haunted Themes
 ============================
 
 > Copyright (C) 2017, HauntedThemes SRL
