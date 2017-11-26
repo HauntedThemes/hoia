@@ -7,7 +7,8 @@ jQuery(document).ready(function($) {
     var config = {
         'share-selected-text': true,
         'load-more': true,
-        'infinite-scroll': false,
+        'infinite-scroll': true,
+        'infinite-scroll-step': 3,
         'disqus-shortname': 'hauntedthemes-demo'
     };
 
@@ -64,67 +65,92 @@ jQuery(document).ready(function($) {
             rellax = new Rellax('.rellax');
         };
 
-    });
+        var currentPage = 1;
+        var pathname = window.location.pathname;
+        var $result = $('.grid-item');
+        var step = 0;
 
-    // Load more posts on click
-    if (config['load-more']) {
+        // remove hash params from pathname
+        pathname = pathname.replace(/#(.*)$/g, '').replace('/\//g', '/');
 
-        $('#load-posts').addClass('visible');
+        if ($('body').hasClass('paged')) {
+            currentPage = parseInt(pathname.replace(/[^0-9]/gi, ''));
+        }
 
-        var nextPage = 2;
-        var pagination = $('#load-posts').attr('data-posts_per_page');
+        // Load more posts on click
+        if (config['load-more']) {
 
-        $('#load-posts').click(function() {
+            $('#load-posts').addClass('visible');
 
-            var parseUrl = '&include=tags&limit=' + pagination + '&page=' + nextPage;
-            if ($('body').attr('data-author')) {
-                parseUrl = parseUrl + '&filter=author:' + $('body').attr('data-author');
-            }else if($('body').attr('data-tag')){
-                parseUrl = parseUrl + '&filter=tag:' + $('body').attr('data-tag');
-            }
+            $('#load-posts').on('click', function(event) {
+                event.preventDefault();
 
-            $.ajax({
-                url: ghost.url.api("posts") + parseUrl,
-                type: 'get'
-            }).done(function(data) {
-                $.each(data.posts, function(i, post) {
-                    $.ajax({
-                        url: ghost.url.api("users") + '&filter=id:' + post.author,
-                        type: 'get'
-                    }).done(function(data) {
-                        $.each(data.users, function(i, users) {
-                            insertPost(post, users);
-                        });
-                    });
-                });
-            }).done(function(data) {
-                var sum = nextPage*pagination;
-                if (sum >= data.meta.pagination.total) {
-                    $('#load-posts').addClass('hidden');
-                }
-                nextPage += 1;
-            }).fail(function(err) {
-                console.log(err);
-            });
-        });
-    };
+                var $this = $(this);
 
-    // Infinite scroll
-    if (config['infinite-scroll'] && config['load-more']) {
-        var checkTimer = 'on';
-        if ($('#load-posts').length > 0) {
-            $(window).on('scroll', function(event) {
-                var timer;
-                if (isScrolledIntoView('#load-posts') && checkTimer == 'on') {
-                    $('#load-posts').click();
-                    checkTimer = 'off';
-                    timer = setTimeout(function() {
-                        checkTimer = 'on';
+                // next page
+                currentPage++;
+
+                if ($('body').hasClass('paged')) {
+                    pathname = '/';
+                };
+
+                // Load more
+                var nextPage = pathname + 'page/' + currentPage + '/';
+
+                if ($this.hasClass('step')) {
+                    setTimeout(function() {
+                       $this.removeClass('step');
+                       step = 0;
                     }, 1000);
                 };
+
+                $.get(nextPage, function (content) {
+                    step++;
+                    var post = $(content).find('.post');
+                    post.addClass('hidden');
+                    post.find('img').addClass('notransition');
+                    $('#content.grid').append( post );
+                    $('#content.grid').imagesLoaded( function() {
+                        msnry.appended( post );
+                        post.removeClass('hidden');
+                        if (w < 767) {
+                            $('.rellax').attr('data-rellax-speed', 1.2);
+                            $('.rellax').attr('data-rellax-percentage', 0.3);
+                        };
+                        if (rellax) {
+                            rellax.destroy();
+                        }
+                        rellax = new Rellax('.rellax');
+                    });
+                }).always(function () {
+                    if (currentPage == maxPages) {
+                        $('#load-posts').addClass('hidden');
+                    };
+                });
+
             });
         };
-    };
+
+        if (config['infinite-scroll'] && config['load-more']) {
+            var checkTimer = 'on';
+            if ($('#load-posts').length > 0) {
+                $(window).on('scroll', function(event) {
+                    var timer;
+                    if (isScrolledIntoView('#load-posts') && checkTimer == 'on' && step < config['infinite-scroll-step']) {
+                        $('#load-posts').click();
+                        checkTimer = 'off';
+                        timer = setTimeout(function() {
+                            checkTimer = 'on';
+                            if (step == config['infinite-scroll-step']) {
+                                $('#load-posts').addClass('step');
+                            };
+                        }, 1000);
+                    };
+                });
+            };
+        };
+
+    });
 
     // Menu trigger
     var disabled = false;
@@ -311,105 +337,6 @@ jQuery(document).ready(function($) {
         var elemBottom = elemTop + $(elem).height();
 
         return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-    }
-
-    // Get first number of words from a string
-    function getWords(str) {
-        return str.split(/\s+/).slice(0,44).join(" ");
-    }
-
-    // Append posts on masonry container
-    function insertPost(postData, authorData) {
-
-        var d = postData.published_at.slice(0, 10).split('-');
-        var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        var monthNumber = d[1];
-        if (monthNumber.slice(0,1) == '0') {
-            monthNumber = monthNumber.slice(1,2) - 1;
-        }else{
-            monthNumber--;
-        };
-
-        var featured = '';
-
-        if (postData.featured) {
-            featured = 'featured';
-        };
-
-        var datetime = d[0] +'-'+ d[1] +'-'+ d[2];
-        var date = d[2] +' '+ monthNames[monthNumber] +' '+ d[0];
-        var excerpt;
-        if (postData.custom_excerpt != null) {
-            excerpt = postData.custom_excerpt;
-        }else{
-            excerpt = getWords($(postData.html).text());
-        };
-
-        var data = {
-            title: postData.title,
-            date: {
-                "datetime": datetime,
-                "date": date
-            },
-            featured: featured,
-            url: postData.url,
-            excerpt: excerpt,
-            author: {
-                "slug": authorData.slug,
-                "name": authorData.name
-            },
-            tags: function(){
-                if (!$.isEmptyObject(postData.tags)) {
-                    data.tags.tag = postData.tags;
-                    return true;
-                };
-            },
-            feature_image: function(){
-                if (postData.feature_image != '' && postData.feature_image != null) {
-                    return postData.feature_image;
-                };
-            },
-        }
-
-        var template = [
-            '<article class="post grid-item {{#tags}}{{#tags.tag}}tag-{{slug}} {{/tags.tag}}{{/tags}}">',
-               ' <div class="post-meta">',
-                    '<a href="/author/{{author.slug}}/">{{author.name}}</a>',
-                    '<time class="post-date" datetime="{{date.datetime}}">{{date.date}}</time>',
-                '</div>',
-                '<h2 class="post-title"><a href="{{url}}" title="{{title}}">{{title}}</a></h2>',
-                '<div class="content-holder">',
-                    '{{#feature_image}}',
-                        '<a href="{{url}}" title="{{title}}" class="img-holder">',
-                            '<img src="{{feature_image}}" alt="{{title}}" class="rellax notransition" data-rellax-speed="2" data-rellax-percentage="0.5">',
-                        '</a>',
-                    '{{/feature_image}}',
-                    '<p>',
-                        '{{excerpt}}',
-                        '<br>',
-                        '<a class="read-more btn" href="{{url}}" title="{{title}}">Read more</a>',
-                    '</p>',
-                '</div>',
-            '</article>'
-        ].join("\n");
-
-        var post = Mustache.render(template, data);
-        post = $(post);
-
-        post.addClass('hidden');
-        $('#content').append( post );
-        $('#content').imagesLoaded( function() {
-            msnry.appended( post );
-            post.removeClass('hidden');
-            if (w < 767) {
-                $('.rellax').attr('data-rellax-speed', 1.2);
-                $('.rellax').attr('data-rellax-percentage', 0.3);
-            };
-            if (rellax) {
-                rellax.destroy();
-            }
-            rellax = new Rellax('.rellax');
-        });
     }
 
     // Resize menu
