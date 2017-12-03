@@ -85,6 +85,11 @@ jQuery(document).ready(function($) {
             $('#load-posts').on('click', function(event) {
                 event.preventDefault();
 
+                if (currentPage == maxPages) {
+                    $('#load-posts').addClass('hidden');
+                    return;
+                };
+
                 var $this = $(this);
 
                 // next page
@@ -122,10 +127,6 @@ jQuery(document).ready(function($) {
                         }
                         rellax = new Rellax('.rellax');
                     });
-                }).always(function () {
-                    if (currentPage == maxPages) {
-                        $('#load-posts').addClass('hidden');
-                    };
                 });
 
             });
