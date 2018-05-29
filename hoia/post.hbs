@@ -20,9 +20,9 @@
                 {{content}}
 
                 <div class="social-share">
-                    <span>Share</span>
-                    <a class="twitter" href="https://twitter.com/intent/tweet/?text={{title}}&url={{@blog.url}}{{url}}" target="_blank" title="Share on Twitter"></a>
-                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{@blog.url}}{{url}}" target="_blank" title="Share on Facebook"></a>
+                    <span>{{t "Share"}}</span>
+                    <a class="twitter" href="https://twitter.com/intent/tweet/?text={{encode title}}&url={{url absolute="true"}}" target="_blank" title="{{t "Share on Twitter"}}"><i class="fab fa-twitter"></i></a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" target="_blank" title="{{t "Share on Facebook"}}"><i class="fab fa-facebook-f"></i></a>
                 </div>
 
             </section>
@@ -41,33 +41,35 @@
     </main>
 
     {{!-- Everything inside the #author tags pulls data from the author --}}
-    {{#author}}
+    {{#if authors}}
+        <section class="authors">
+            {{#foreach authors}}
+                <section class="author">
+                    {{#if profile_image}}
+                    <figure class="author-image">
+                        <a class="img" href="{{url}}" title="{{name}}"><img src="{{img_url profile_image}}" alt="{{name}}"></a>
+                    </figure>
+                    {{/if}}
 
-        <section class="author">
-            {{#if profile_image}}
-            <figure class="author-image">
-                <a class="img" href="{{url}}" title="{{name}}"><img src="{{img_url profile_image}}" alt="{{name}}"></a>
-            </figure>
-            {{/if}}
+                    <h4><a href="{{url}}">{{name}}</a></h4>
 
-            <h4><a href="{{url}}">{{name}}</a></h4>
-
-            {{#if bio}}
-                <p>{{bio}}</p>
-            {{else}}
-                <p>Read <a href="{{url}}">more posts</a> by this author.</p>
-            {{/if}}
-            <div class="author-meta">
-                {{#if location}}<span class="author-location">{{location}}</span>{{/if}}
-                {{#if website}}<span class="author-link"><a href="{{website}}" target="_blank" rel="noopener noreferrer">{{website}}</a></span>{{/if}}
-            </div>
-            <div class="social">
-                {{#if twitter}}<a href="{{twitter_url}}" class="twitter" title="{{twitter}}" target="_blank"></a>{{/if}}
-                {{#if facebook}}<a href="{{facebook_url}}" class="facebook" title="{{facebook}}" target="_blank"></a>{{/if}}
-            </div>
+                    {{#if bio}}
+                        <p>{{bio}}</p>
+                    {{else}}
+                        <p>{{{t "Read <a href='{url}'>more posts</a> by this author" url=(url)}}}.</p>
+                    {{/if}}
+                    <div class="author-meta">
+                        {{#if location}}<span class="author-location">{{location}}</span>{{/if}}
+                        {{#if website}}<span class="author-link"><a href="{{website}}" target="_blank" rel="noopener noreferrer">{{website}}</a></span>{{/if}}
+                    </div>
+                    <div class="social">
+                        {{#if twitter}}<a href="{{twitter_url}}" class="twitter" title="{{twitter}}" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>{{/if}}
+                        {{#if facebook}}<a href="{{facebook_url}}" class="facebook" title="{{facebook}}" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>{{/if}}
+                    </div>
+                </section>
+            {{/foreach}}
         </section>
-
-    {{/author}}
+    {{/if}}
 
     <div class="comments"></div>
 

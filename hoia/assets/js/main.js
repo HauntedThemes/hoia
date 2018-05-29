@@ -22,20 +22,20 @@ jQuery(document).ready(function($) {
         $(this).parent().addClass('img-holder');
     });
 
-    $('.content-inner .post-content img').each(function(index, el) {
+    $('.content-inner .post-content img:not(.kg-image), .content-inner .kg-image-card').each(function(index, el) {
         $(this).attr('style', 'transform: translateX(-50%)');
     });
 
-    if ($('.content-inner .post-content img').length) {
-        $('.content-inner .post-content img').each(function(index, el) {
+    if ($('.content-inner .post-content img:not(.kg-image), .content-inner .kg-image-card').length) {
+        $('.content-inner .post-content img:not(.kg-image), .content-inner .kg-image-card').each(function(index, el) {
             $(this).attr('data-rellax-speed', '2');
             $(this).attr('data-rellax-percentage', '0.5');
         });
     };
 
-    $('.content-inner img').addClass('rellax');
+    $('.content-inner img:not(.kg-image), .content-inner .kg-image-card').addClass('rellax');
     setTimeout(function() {
-        $('.content-inner .content-holder img, .grid img, .content-inner img').addClass('notransition');
+        $('.content-inner .content-holder img, .grid img, .content-inner .post-content img:not(.kg-image), .content-inner .kg-image-card').addClass('notransition');
     }, 300);
 
     if (w < 767) {
@@ -327,6 +327,11 @@ jQuery(document).ready(function($) {
         }, 400);
     });
 
+    // Initialize Highlight.js
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
+
     // Hoia's functions
 
     // Check if element is into view when scrolling
@@ -346,9 +351,11 @@ jQuery(document).ready(function($) {
 
         var navHeight = $('header nav').height();
         var navHeightUl = $('header nav ul').height();
+        var headerNavHeight = h - $('header .menu-container .menu-container-header').outerHeight() - $('header .social').outerHeight() - 10;
         
-        if ((navHeightUl + 200) < (h - $('header .menu-container .menu-container-header').outerHeight() - $('header .social').outerHeight())) {
+        if ((navHeightUl + 200) < headerNavHeight) {
             $('header nav').removeClass('fixed-height');  
+            $('header nav').height(headerNavHeight);
         }else{
             $('header nav').addClass('fixed-height');  
         };

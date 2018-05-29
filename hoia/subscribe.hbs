@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{lang}}">
 <head>
 
     {{> theme_head}}
@@ -19,9 +19,9 @@
             <article class="{{post_class}}">
                 <h1 class="post-title">
                     {{^if success}}
-                        Subscribe to {{@blog.title}}
+                        {{t "Subscribe to {blogtitle}" blogtitle=@blog.title}}
                     {{else}}
-                        Subscribed!
+                        {{t "Subscribed!"}}
                     {{/if}}
                 </h1>
                 <section class="post-content">
@@ -29,14 +29,14 @@
                         {{subscribe_form
                             form_class="gh-signin"
                             input_class="gh-input"
-                            button_class="btn btn-blue btn-block"
-                            placeholder="Your email address"
+                            button_class="gh-btn gh-btn-blue gh-btn-block"
+                            placeholder=(t "Your email address")
                             autofocus="true"
                         }}
                     {{else}}
                         <p>
-                            You've successfully subscribed to <em>{{@blog.title}}</em>
-                            with the email address <em>{{email}}</em>.
+                            {{t "You've successfully subscribed to"}} <em>{{@blog.title}}</em>
+                            {{t "with the email address"}} <em>{{email}}</em>.
                         </p>
                     {{/if}}
                 </section>
@@ -44,9 +44,6 @@
         </main>
     </div>
 
-
-    {{!-- jQuery needs to come before `{{ghost_foot}}` so that jQuery can be used in code injection --}}
-    <script type="text/javascript" src="{{asset "js/jquery-1.12.4.min.js"}}"></script>
 
     {{!-- 3rd party scripts --}}
     <script type="text/javascript" src="{{asset "js/libraries.js"}}"></script>
