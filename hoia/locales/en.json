@@ -1,7 +1,5 @@
 {
     "Search": "Search",
-    "Related posts": "Related posts",
-    "View comments": "View comments",
     "Share on Twitter": "Share on Twitter",
     "Share on Facebook": "Share on Facebook",
     "Newer Posts": "Newer Posts",
@@ -10,7 +8,6 @@
     "Tags": "Tags",
     "Newsletter": "Newsletter",
     "Your email address": "Your email address",
-    "Back": "Back",
     "Subscribe": "Subscribe",
     "Subscribe to {blogtitle}": "Subscribe to {blogtitle}",
     "Subscribed!": "Subscribed!",
