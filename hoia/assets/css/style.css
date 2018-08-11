@@ -930,7 +930,7 @@ header .social a:first-child{
 
 .grid img,
 .content-inner img:not(.kg-image),
-.content-inner .kg-image-card{
+.content-inner .kg-image-card img{
     box-shadow: 0 70px 114px 20px rgba(54,32,15,0.35);
     padding: 10px;
     background: #fff;
@@ -962,7 +962,6 @@ header .social a:first-child{
 .content-inner .post-content img:not(.kg-image),
 .content-inner .post-content .kg-image-card{
     margin-bottom: 100px;
-    display: block;
     margin-top: 50px;
     max-width: 120%;
     height: auto;
@@ -972,13 +971,20 @@ header .social a:first-child{
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
+    display: flex;
+    align-items: center;
 }
 
 .content-inner .post-content figcaption{
     padding: 10px 15px;
-    background: #f4f3f2;
+    background: #ffffff;
     font-size: 14px;
     margin-top: 5px;
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    width: auto;
+    transform: translateX(-50%);
 }
 
 .grid img:hover,
@@ -1076,6 +1082,26 @@ header .social a:first-child{
 
 .content-inner iframe{
     max-width: 100% !important;
+}
+
+#content .post .editor-content .kg-width-wide img{
+    max-width: calc(100% + 300px);
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    width: auto;
+}
+
+#content .post .editor-content .kg-width-full img{
+    max-width: 100vw;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    width: auto;
+}
+
+#content .post .editor-content .img-holder:hover img{
+    opacity: .8;
 }
 
 .content-inner iframe[src*="https://www.youtube.com/"] {
@@ -1234,7 +1260,10 @@ header .social a:first-child{
 }
 
 .author img{
-    max-width: 87px;
+    width: 87px;
+    height: 87px;
+    display: inline-flex;
+    object-fit: cover;
     border-radius: 50%;
     background: white;
     padding: 5px;
@@ -2069,7 +2098,6 @@ footer label{
     .content-inner .post-content img:not(.kg-image), 
     .content-inner .post-content .kg-image-card,
     .content-inner img:not(.kg-image){
-        padding: 5px;
         margin-bottom: 20px;
         max-width: 100%;
     }
@@ -2099,8 +2127,8 @@ footer label{
         margin-left: 0;
     }
     .author{
-        margin-left: -10vw;
-        width: calc(100% + 20vw);
+        margin-left: -15px;
+        width: calc(100% + 30px);
     }
     .grid article.featured .post-title:before{
         left: -24px;
@@ -2184,6 +2212,12 @@ footer label{
     }
     .content-inner iframe[src*="https://www.youtube.com/"] {
         height: calc((100vw - 30px) / 1.77777778) !important;
+    }
+    .content-inner .post-content figcaption{
+        left: 0;
+        width: auto;
+        transform: none;
+        width: calc(100% - 30px);
     }
     footer .container-footer{
         padding: 20px 0 50px;

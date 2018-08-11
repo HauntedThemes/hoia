@@ -43,7 +43,7 @@ jQuery(document).ready(function($) {
         $('.rellax').attr('data-rellax-percentage', 0.3);
     };
 
-    $(window).load(function() {
+    $(window).on('load', function(event) {
 
         // Initialize Masonry - Cascading grid layout library
         if ($('#content.grid').length) {
