@@ -1060,11 +1060,14 @@ header .social a:first-child{
     font-size: 15px;
     line-height: 18px;
     font-weight: bold;
-    margin-right: 10px;
 }
 
 .post-meta a:hover{
     opacity: .6;
+}
+
+.post-meta time{
+    margin-left: 5px;
 }
 
 .read-more{
@@ -2206,9 +2209,6 @@ footer label{
     }
     .post-meta:before{
         margin-right: 10px;
-    }
-    .post-meta a{
-        margin-right: 7px;
     }
     .content-inner iframe[src*="https://www.youtube.com/"] {
         height: calc((100vw - 30px) / 1.77777778) !important;

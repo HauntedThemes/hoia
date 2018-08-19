@@ -581,6 +581,10 @@
             line-height: 30px;
         }
 
+        figure{
+            margin: 30px 0;
+        }
+
         /* ==========================================================================
            2. Utilities
            ========================================================================== */
@@ -639,6 +643,7 @@
             color: #333333;
             font-weight: bold;
             position: relative;
+            text-align: center;
         }
 
         .post {
@@ -749,6 +754,12 @@
             text-decoration: none;
         }
 
+        .editor-content figcaption{
+            padding: 10px 15px;
+            font-size: 14px;
+            border-bottom: 1px solid #cccccc;
+        }
+
         /* ==========================================================================
            4. Footer - The bottom the AMP Post
            ========================================================================== */
@@ -809,9 +820,7 @@
 
             <header class="post-header">
                 <section class="post-meta">
-                    {{#author}}
-                    <p class="author"><a href="{{url}}">{{name}}</a></p>
-                    {{/author}}
+                    <p class="author">{{authors}}</p>
                     <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMMM YYYY"}}</time>
                 </section>
                 <h1 class="post-title">{{title}}</h1>
@@ -823,7 +832,7 @@
             {{/if}}
             <section class="post-content">
 
-                {{amp_content}}
+                <div class="editor-content">{{amp_content}}</div>
 
             </section>
 
@@ -831,7 +840,7 @@
     </main>
     {{/post}}
     <footer class="site-footer clearfix">
-        <section class="copyright"><a href="{{@blog.url}}">{{@blog.title}}</a> &copy; {{date format="YYYY"}}</section>
+        <section class="copyright">{{t "Copyright"}} &copy; {{date format="YYYY"}}, <a href="{{@blog.url}}">{{@blog.title}}</a>. {{t "All Right Reserved"}}.</section>
     </footer>
 </body>
 </html>
