@@ -1,21 +1,25 @@
 {{!-- Search and menu buttons --}}
 <div class="triggers">
+    {{#if @labs.publicAPI}}
     <span class="search-trigger"></span>
+    {{/if}}
     <span class="nav-trigger"><i></i></span>
 </div>
 
 {{!-- This is the search container - visible after a user clicks the search button --}}
-<div class="search-container">
-    <form>
+{{#if @labs.publicAPI}}
+    <div class="search-container">
+        <form>
+            <div class="container">
+                <input id="search-field" placeholder="{{t "Search"}}" autocomplete="off"/>
+                <span class="search-trigger"></span>
+            </div>
+        </form>
         <div class="container">
-            <input id="search-field" placeholder="{{t "Search"}}" autocomplete="off"/>
-            <span class="search-trigger"></span>
+            <ul id="results"></ul>
         </div>
-    </form>
-    <div class="container">
-        <ul id="results"></ul>
     </div>
-</div>
+{{/if}}
 
 {{!-- This is the menu container - visible after a user clicks the menu button --}}
 <div class="menu-container">
