@@ -17,6 +17,8 @@ jQuery(document).ready(function($) {
         rellax,
         msnry;
 
+    setGalleryRation();
+
     // Add classes and attributes for Rellax library
     $('.content-inner .post-content a img:only-child').each(function(index, el) {
         $(this).parent().addClass('img-holder');
@@ -44,6 +46,8 @@ jQuery(document).ready(function($) {
     };
 
     $(window).on('load', function(event) {
+
+        setGalleryRation();
 
         // Initialize Masonry - Cascading grid layout library
         if ($('#content.grid').length) {
@@ -365,6 +369,17 @@ jQuery(document).ready(function($) {
     function validateEmail(email) {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
+    }
+
+    // Set the right proportion for images inside the gallery
+    function setGalleryRation(){
+        $('.kg-gallery-image img').each(function(index, el) {
+            var container = $(this).closest('.kg-gallery-image');
+            var width = $(this)[0].naturalWidth;
+            var height = $(this)[0].naturalHeight;
+            var ratio = width / height;
+            container.attr('style', 'flex: ' + ratio + ' 1 0%');
+        });
     }
 
 });
