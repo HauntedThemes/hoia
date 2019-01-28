@@ -13,7 +13,7 @@
             <h1 class="post-title">{{title}}</h1>
             {{#if feature_image}}
                 <div class="content-holder">
-                    <img src="{{img_url feature_image}}" alt="{{title}}" class="rellax" data-rellax-speed="2" data-rellax-percentage="0.5">
+                    <img src="{{img_url feature_image size="l"}}" alt="{{title}}" class="rellax" data-rellax-speed="2" data-rellax-percentage="0.5">
                 </div>
             {{/if}}
             <section class="post-content">
@@ -47,7 +47,7 @@
                 <section class="author">
                     {{#if profile_image}}
                     <figure class="author-image">
-                        <a class="img" href="{{url}}" title="{{name}}"><img src="{{img_url profile_image}}" alt="{{name}}"></a>
+                        <a class="img" href="{{url}}" title="{{name}}"><img src="{{img_url profile_image size="xs"}}" alt="{{name}}"></a>
                     </figure>
                     {{/if}}
 

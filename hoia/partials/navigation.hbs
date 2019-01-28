@@ -1,32 +1,28 @@
 {{!-- Search and menu buttons --}}
 <div class="triggers">
-    {{#if @labs.publicAPI}}
     <span class="search-trigger"></span>
-    {{/if}}
     <span class="nav-trigger"><i></i></span>
 </div>
 
 {{!-- This is the search container - visible after a user clicks the search button --}}
-{{#if @labs.publicAPI}}
-    <div class="search-container">
-        <form>
-            <div class="container">
-                <input id="search-field" placeholder="{{t "Search"}}" autocomplete="off"/>
-                <span class="search-trigger"></span>
-            </div>
-        </form>
+<div class="search-container">
+    <form>
         <div class="container">
-            <ul id="results"></ul>
+            <input id="search-field" placeholder="{{t "Search"}}" autocomplete="off"/>
+            <span class="search-trigger"></span>
         </div>
+    </form>
+    <div class="container">
+        <ul id="results"></ul>
     </div>
-{{/if}}
+</div>
 
 {{!-- This is the menu container - visible after a user clicks the menu button --}}
 <div class="menu-container">
     <div class="container">
         <div class="menu-container-header">
-            <a class="blog-logo" href="{{@blog.url}}" title="{{@blog.title}}">
-                {{#if @blog.logo}} <img src="{{@blog.logo}}" alt="{{@blog.title}}" /> {{else}} {{@blog.title}} {{/if}} 
+            <a class="blog-logo" href="{{@site.url}}" title="{{@site.title}}">
+                {{#if @site.logo}} <img src="{{@site.logo}}" alt="{{@site.title}}" /> {{else}} {{@site.title}} {{/if}} 
             </a>
             <span class="nav-trigger"><i></i></span>
         </div>
@@ -40,11 +36,11 @@
     </nav>
     <div class="container">
         <div class="social">
-            {{#if @blog.facebook}}
-                <a href="{{facebook_url}}" class="facebook" title="{{@blog.facebook}}" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            {{#if @site.facebook}}
+                <a href="{{facebook_url}}" class="facebook" title="{{@site.facebook}}" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
             {{/if}}
-            {{#if @blog.twitter}}
-                <a href="{{twitter_url}}" class="twitter" title="{{@blog.twitter}}" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+            {{#if @site.twitter}}
+                <a href="{{twitter_url}}" class="twitter" title="{{@site.twitter}}" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
             {{/if}}
         </div>
     </div>

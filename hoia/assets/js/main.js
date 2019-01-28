@@ -9,13 +9,21 @@ jQuery(document).ready(function($) {
         'load-more': true,
         'infinite-scroll': true,
         'infinite-scroll-step': 3,
-        'disqus-shortname': 'hauntedthemes-demo'
+        'disqus-shortname': 'hauntedthemes-demo',
+        'content-api-host': '',
+        'content-api-key': '',
     };
 
     var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
         h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
         rellax,
         msnry;
+
+    var ghostAPI = new GhostContentAPI({
+        host: config['content-api-host'],
+        key: config['content-api-key'],
+        version: 'v2'
+    });
 
     setGalleryRation();
 
@@ -226,19 +234,15 @@ jQuery(document).ready(function($) {
         };
     });
 
-    // Initialize ghostHunter - A Ghost blog search engine
-    $("#search-field").ghostHunter({
-        results             : "#results",
-        onKeyUp             : true,
-        displaySearchInfo   : false,
-        result_template     : "<li><a href='{{link}}' title='{{title}}'>{{title}}</a></li>",
-        onComplete      : function( results ){
-            $('#results li').each(function(index, el) {
-                if (index > 9) {
-                    $(this).hide();
-                };
-            });
-        }
+    var ghostSearch = new GhostSearch({
+        host: config['content-api-host'],
+        key: config['content-api-key'],
+        input: '#search-field',
+        results: '#results',
+        template: function(result) {
+            let url = [location.protocol, '//', location.host].join('');
+            return '<li><a href="' + url + '/' + result.slug + '/">' + result.title + '</a></li>';  
+        },
     });
 
     // Validate Subscribe input
