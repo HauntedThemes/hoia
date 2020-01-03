@@ -1,0 +1,38 @@
+{{!-- The tag below means - insert everything in this file into the {body} of the default.hbs template --}}
+{{!< ../default}}
+
+
+    {{#if @member.paid}}
+
+        <div class="container mb-100">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="post-title">{{t "Nice, you're a subscriber!"}}</h1>
+                    <p>{{{t "Hey! <strong>{email}</strong> has an active {title} account with access to all areas. You're all set, but if you need any help, get in touch with us and we'd be happy to help." email=@member.email title=@site.title}}}</p>
+                </div>
+            </div>
+        </div>
+
+    {{else if @member}}
+
+        <div class="container mb-100">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="post-title">{{t "Currently, you're not a subscriber"}}</h1>
+                    <p>{{{t "Hey there! <strong>{email}</strong> is subscribed to free updates from {title}, but doesn't have a paid subscription to unlock full access." email=@member.email title=@site.title}}}</p>
+                    <div class="authbox-signup">
+                        <a class="button primary btn" href="/signup/">
+                            <span class="button-content">{{t "Subscribe now"}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {{else}}
+
+        {{!-- Not logged in: Redirect to signin --}}
+        <script>window.location = '/signin/';</script> 
+
+    {{/if}}
+  

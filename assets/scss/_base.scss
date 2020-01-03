@@ -154,6 +154,10 @@ h6{
     font-size: 12px;
 }
 
+.mb-100{
+    margin-bottom: 100px;
+}
+
 h1, h2, h3, h4, h5, h6{
     font-family: "quatro", "Roboto", sans-serif;
     color: #333333;
@@ -959,7 +963,7 @@ header .social a:first-child{
     transition: box-shadow 0.3s ease-in-out;
 }
 
-.content-inner .post-content img:not(.kg-image),
+.content-inner .post-content img:not(.kg-image):not(.kg-bookmark-icon):not(.kg-bookmark-thumbnail img),
 .content-inner .post-content .kg-image-card{
     margin-bottom: 100px;
     margin-top: 50px;
@@ -1145,6 +1149,83 @@ header .social a:first-child{
 
 #content .post .editor-content .kg-gallery-image:not(:first-of-type) {
     margin: 0 0 0 10px;
+}
+
+.kg-bookmark-card {
+    background: #fff;
+    width: 100%;
+}
+.kg-card {
+    + {
+        .kg-bookmark-card {
+            margin-top: 0;
+        }
+    }
+}
+.editor-content {
+    a.kg-bookmark-container {
+        display: flex;
+        flex-wrap: wrap;
+        color: black;
+        text-decoration: none;
+        background: #f5f5f5;
+        .kg-bookmark-icon {
+            margin: 0 8px 0 0;
+        }
+        .kg-bookmark-thumbnail {
+            img {
+                margin: 0;
+            }
+        }
+    }
+}
+.kg-bookmark-content {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-width: 50%;
+    padding: 20px;
+}
+.kg-bookmark-title {
+    font-weight: 600;
+}
+.kg-bookmark-description {
+    margin-top: 12px;
+}
+.kg-bookmark-metadata {
+    margin-top: 12px;
+}
+.kg-bookmark-thumbnail {
+    flex-basis: 15rem;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    img {
+        vertical-align: bottom;
+        object-fit: cover;
+        width: 100%;
+    }
+}
+.kg-bookmark-icon {
+    width: 22px;
+    height: 22px;
+    margin: 0 8px 0 0;
+    left: 0;
+    transform: none;
+    vertical-align: bottom;
+}
+.kg-bookmark-author {
+    &:after {
+        content: "•";
+        margin: 0 6px;
+    }
+}
+.kg-bookmark-publisher {
+    overflow: hidden;
+    line-height: 1.5em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 240px;
 }
 
 /* ==========================================================================

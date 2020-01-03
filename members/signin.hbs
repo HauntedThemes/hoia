@@ -1,0 +1,30 @@
+{{!-- The tag below means - insert everything in this file into the {body} of the default.hbs template --}}
+{{!< ../default}}
+
+    {{#if @member}}
+
+        {{!-- Logged in: Redirect home --}}
+        <script>window.location = '/';</script>
+
+    {{else}}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1 class="post-title">{{t "Sign in"}}</h1>
+
+                    {{!-- Not logged in: Sign up --}}
+                    <form class="signin-form" data-members-form="signin">
+                        <div class="signin-box">
+                            <input data-members-email type="email" placeholder="{{t "Your email address"}}" required="true" autocomplete="false" />
+                            <button class="btn" type="submit">{{t "Submit"}}</button>
+                        </div>
+                        <p><small>{{{t "Don't have an account yet? <a href='{url}'>Sign up</a>" url="/signup/"}}}</small></p>
+                        <div class="message-success">{{{t "<strong>Great!</strong> Check your inbox and click the link to complete signin"}}}</div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+
+    {{/if}}
